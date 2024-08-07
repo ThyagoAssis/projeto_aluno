@@ -2,30 +2,54 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    {% load bootstrap5 %} <!---Carrega o bootstrap no html-->
+    {% bootstrap_css %} <!--Disponibiliza as classes bootstrap no html--->
+    {% bootstrap_javascript %} <!--Disponibiliza o javascript do bootstrap mo html--->
     <title>Lista de Alunos</title>
 </head>
 <body>
-    <h1> {{ titulo }} </h1>
+    <header> <!---Inicio do cabeçalho-->
+        <!-- Como um span -->
+        <nav class="navbar navbar-dark bg-dark">
+          <span class="navbar-brand mb-0 h1 container">TuxSchool</span>
+        </nav>
+    </header><!---Fim do cabeçalho-->
 
-    <table>
-        <thead>
-            <tr>
-                <th>Nome: </th>
-                <th>Ações: </th>
-            </tr>
-        </thead>
-            {% for aluno in nome %}
+    <main class="container">
+        <div class="row"> <!---Inicio da primeira linha-->
+            <div class="col-11"> <!--Inicio primeira coluna--->
+                <h4>Alunos cadastrados</h4>
+            </div>               <!--Fim primeira coluna--->
+            <div class="col-1"></div>
+            <hr> <!---Cria uma divisao-->
+        </div><!---Fim da primeira linha-->
+
+        <!------------Separa as linhas----------------------->
+        <div class="row"> <!--Inicio segunda linha--->
+            <table class="table">
+              <thead>
                 <tr>
-                    <th>{{ aluno }}</th>
-                    <th>
-                        <button>Editar</button>
-                        <button>Excluir</button>
-                    </th>
+                  <th scope="col">#</th>
+                  <th scope="col">Primeiro</th>
+                  <th scope="col">Último</th>
+                  <th scope="col">Nickname</th>
                 </tr>
-            {% endfor %}
-    </table>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">3</th>
+                  <td>Larry</td>
+                  <td>the Bird</td>
+                  <td>@twitter</td>
+                </tr>
+              </tbody>
+            </table>
+        </div><!--Fim segunda linha--->
+    </main>
 
 
 
+
+    <footer></footer>
 </body>
 </html>

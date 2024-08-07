@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     #nome da pasta.apps.nomedaclasse
-    'lista.apps.ListaConfig'
+    'lista.apps.ListaConfig',
+    #App do bootstrap
+    'bootstrap5',
 
 ]
 
