@@ -23,7 +23,11 @@ from lista.views import home, contato
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('home/', home),
+
+    ## com o patch vazio temos a nosssa pagina(rota) principal
+    path('', home),
+
+    #Demais paginas(rotas)
     path('contato/', contato)
 
 ]

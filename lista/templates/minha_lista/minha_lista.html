@@ -10,44 +10,52 @@
 <body>
     <header> <!---Inicio do cabeçalho-->
         <!-- Como um span -->
-        <nav class="navbar navbar-dark bg-dark">
-          <span class="navbar-brand mb-0 h1 container">TuxSchool</span>
+        <nav class="navbar navbar-dark bg-dark shadow">
+          <div class="container">
+              <span class="navbar-brand mb-0 h1 ">TuxSchool</span>
+          </div>
         </nav>
     </header><!---Fim do cabeçalho-->
 
-    <main class="container">
+
+    <main class="container mt-3">
         <div class="row"> <!---Inicio da primeira linha-->
             <div class="col-11"> <!--Inicio primeira coluna--->
-                <h4>Alunos cadastrados</h4>
+                <h4><strong>Alunos cadastrados</strong></h4>
             </div>               <!--Fim primeira coluna--->
             <div class="col-1"></div>
-            <hr> <!---Cria uma divisao-->
         </div><!---Fim da primeira linha-->
 
         <!------------Separa as linhas----------------------->
         <div class="row"> <!--Inicio segunda linha--->
-            <table class="table">
+            <table class="table text-center">
               <thead>
                 <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Primeiro</th>
-                  <th scope="col">Último</th>
-                  <th scope="col">Nickname</th>
+                    <th scope="col">Nome:</th>
+                    <th scope="col">Curso:</th>
+                    <th scope="col">Turma:</th>
+                    <th scope="col">Ações:</th>
                 </tr>
               </thead>
+
               <tbody>
+              <!--Usando o for com o conceito de context do django-->
+              {% for aluno in dados %}
                 <tr>
-                  <th scope="row">3</th>
-                  <td>Larry</td>
-                  <td>the Bird</td>
-                  <td>@twitter</td>
+                  <th>{{ aluno.nome }}</th>
+                  <td>{{ aluno.curso }}</td>
+                  <td>{{ aluno.turma }}</td>
+                  <td>
+                        <button type="button" class="btn btn-primary btn-sm">Editar</button>
+                        <button type="button" class="btn btn-danger btn-sm">Excluir</button>
+                  </td>
                 </tr>
+              {% endfor %}
+
               </tbody>
             </table>
         </div><!--Fim segunda linha--->
     </main>
-
-
 
 
     <footer></footer>
