@@ -23,7 +23,7 @@
             <div class="col-11"> <!--Inicio primeira coluna--->
                 <h4><strong>Alunos cadastrados</strong></h4>
             </div>               <!--Fim primeira coluna--->
-            <div class="col-1"></div>
+            <div class="col-1">    <a href="{% url 'alunos_form' %}" class="btn btn-primary btn-sm">Cadastrar</a>       </div>
         </div><!---Fim da primeira linha-->
 
         <!------------Separa as linhas----------------------->
@@ -40,14 +40,14 @@
 
               <tbody>
               <!--Usando o for com o conceito de context do django-->
-              {% for aluno in dados %}
+              {% for aluno in alunos_list %}
                 <tr>
                   <th>{{ aluno.nome }}</th>
                   <td>{{ aluno.curso }}</td>
                   <td>{{ aluno.turma }}</td>
                   <td>
-                        <button type="button" class="btn btn-primary btn-sm">Editar</button>
-                        <button type="button" class="btn btn-danger btn-sm">Excluir</button>
+                        <a href="{% url 'alunos_edicao' aluno.pk %}" class="btn btn-primary btn-sm">Editar</a>
+                        <a href="{% url 'alunos_delete' aluno.pk %}" class="btn btn-danger btn-sm">Excluir</a>
                   </td>
                 </tr>
               {% endfor %}
@@ -56,7 +56,6 @@
             </table>
         </div><!--Fim segunda linha--->
     </main>
-
 
     <footer></footer>
 </body>

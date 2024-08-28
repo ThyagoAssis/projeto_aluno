@@ -1,20 +1,33 @@
 from django.shortcuts import render
 
-#Criar uma função com um paramentro par receber a requisição
-def home(request):
-    #Os colchetes cria um array (lista), para criar divisao utiliza-se virgula
-    #As chaves {} criam um dicionario
-    #Aqui temos uma lista de dicionários
-    alunos = [
-        {"nome": "Marcos Silva", "curso": "PHP", "turma": "2024.5"},
-        {"nome": "Maria de Jesus", "curso": "Python", "turma": "2024.3"},
-        {"nome": "Joao Alves", "curso": "Informatica basica", "turma": "2024.8"},
-        {"nome": "Otaviano Costa", "curso": "Informatica basica", "turma": "2024.4"}
-    ]
-    return render(request, "minha_lista/minha_lista.html", {"dados": alunos})
+#Buscando a ferramenta que lista os dados no banco de dados(ListView)
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+#Dizendo onde encontrar o modelo alunos
+from .models import Alunos
+##Ferramenta pra redirecionar para uma pagina
+from django.urls import reverse_lazy
 
+#Classe de consulta aos dados
+class AlunosListView(ListView):
+    model = Alunos
 
+#Criando a classe para cadastro
+class AlunosCreateView(CreateView):
+    #Informa o modelo a ser usado
+    model = Alunos
+    #QQuais campos da nossa tabela sera preenchida
+    fields = ["nome","curso","turma"]
+    #Redireciona para uma pagina
+    success_url = reverse_lazy('alunos_list')
 
+#Classe de edição
+class AlunosUpdateView(UpdateView):
+    model = Alunos
+    fields = ["nome", "curso", "turma"]
+    template_name = 'lista/alunos_form.html'
+    success_url = reverse_lazy('alunos_list')
 
-def contato(request):
-    return render(request, "minha_lista/contato.html")
+class AlunosDeleteView(DeleteView):
+    model = Alunos
+    template_name = 'lista/alunos_delete.html'
+    success_url = reverse_lazy('alunos_list')

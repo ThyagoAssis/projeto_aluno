@@ -18,16 +18,16 @@ from django.contrib import admin
 from django.urls import path
 
 #Importando nossa função home da nossa view
-from lista.views import home, contato
+from lista.views import AlunosListView, AlunosCreateView, AlunosUpdateView, AlunosDeleteView
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
     ## com o patch vazio temos a nosssa pagina(rota) principal
-    path('', home),
-
-    #Demais paginas(rotas)
-    path('contato/', contato)
+    path('', AlunosListView.as_view(), name='alunos_list'),
+    path('cadastro/', AlunosCreateView.as_view(), name='alunos_form'),
+    path('edicao/<int:pk>/', AlunosUpdateView.as_view(), name='alunos_edicao'),
+    path('delete/<int:pk>/', AlunosDeleteView.as_view(), name='alunos_delete'),
 
 ]
